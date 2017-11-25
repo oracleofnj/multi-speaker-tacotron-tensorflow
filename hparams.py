@@ -8,7 +8,7 @@ def f(num):
 basic_params = {
     # Comma-separated list of cleaners to run on text prior to training and eval. For non-English
     # text, you may want to use "basic_cleaners" or "transliteration_cleaners" See TRAINING_DATA.md.
-    'cleaners': 'korean_cleaners',
+    'cleaners': 'english_cleaners',
 }
 
 basic_params.update({
@@ -30,7 +30,7 @@ if True:
 
 basic_params.update({
     # Model
-    'model_type': 'single', # [single, simple, deepvoice]
+    'model_type': 'deepvoice', # [single, simple, deepvoice]
     'speaker_embedding_size': f(16),
 
     'embedding_size': f(256),
@@ -132,8 +132,8 @@ basic_params.update({
     'main_data': [''],
     'prioritize_loss': False,
 
-    'recognition_loss_coeff': 0.2,
-    'ignore_recognition_level': 1, # 0: use all, 1: ignore only unmatched_alignment, 2: fully ignore recognition
+    'recognition_loss_coeff': 1, #0.2,
+    'ignore_recognition_level': 2, # 0: use all, 1: ignore only unmatched_alignment, 2: fully ignore recognition
 
     # Eval
     'min_tokens': 50,

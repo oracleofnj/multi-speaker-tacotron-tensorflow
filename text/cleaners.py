@@ -13,7 +13,7 @@ hyperparameter. Some cleaners are English-specific. You'll typically want to use
 
 import re
 from .korean import tokenize as ko_tokenize
-
+from unidecode import unidecode
 
 # Regular expression matching whitespace:
 _whitespace_re = re.compile(r'\s+')
@@ -66,6 +66,10 @@ def collapse_whitespace(text):
     return re.sub(_whitespace_re, ' ', text)
 
 
+def convert_to_ascii(text):
+    return unidecode(text)
+
+
 def basic_cleaners(text):
     '''Basic pipeline that lowercases and collapses whitespace without transliteration.'''
     text = lowercase(text)
@@ -85,7 +89,6 @@ def english_cleaners(text):
   '''Pipeline for English text, including number and abbreviation expansion.'''
   text = convert_to_ascii(text)
   text = lowercase(text)
-  text = expand_numbers(text)
   text = expand_abbreviations(text)
   text = collapse_whitespace(text)
   return text
